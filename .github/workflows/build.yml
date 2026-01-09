@@ -1,0 +1,28 @@
+name: Build Node App (Custom File Names)
+ 
+on:
+  push:
+    branches:
+      - main
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      - name: Download code
+        uses: actions/checkout@v4
+ 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+ 
+      - name: Rename config file
+        run: mv app-config.json package.json
+ 
+      - name: Install dependencies
+        run: npm install
+ 
+      - name: Run application
+        run: npm start
