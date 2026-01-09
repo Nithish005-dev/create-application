@@ -1,0 +1,30 @@
+name: Build App Using app.json
+ 
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:   # Allows manual run from GitHub UI
+ 
+jobs:
+  build:
+    runs-on: ubuntu-latest
+ 
+    steps:
+      # Step 1: Checkout repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      # Step 2: Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+ 
+      # Step 3: Install dependencies from package.json
+      - name: Install dependencies
+        run: npm install
+ 
+      # Step 4: Build application
+      - name: Build application
+        run: npm run build
